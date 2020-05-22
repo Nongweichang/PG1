@@ -21,7 +21,8 @@ class video:
                     cv2.imwrite(self.dirPath + "/" + str(i) + ".jpg", frame)
             i += 1
 
-    def camera(self):
+    @staticmethod
+    def camera():
         cam = cv2.VideoCapture(0)
         while True:
             success, frame = cam.read()

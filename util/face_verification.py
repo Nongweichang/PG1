@@ -57,8 +57,8 @@ class face_verification:
 
     def Real_time_recognition_mode(self, Duration, interval=600):
         os.system("cls")
-        print("10秒后开始检测")
-        time.sleep(10)
+        print("3秒后开始检测")
+        time.sleep(3)
         print("开始")
         start = time.time()
         count = 0
@@ -68,15 +68,22 @@ class face_verification:
             count += 1
             img = getFace(img)
             eye = getEye(img)
-            img = resizeImg(img)
-            for face in img:
-                t = self.model.predict(face)
-                aresult = self.analysis(t)
-                if aresult[0] >= 48:
-                    ans += 1
-                    if len(eye) == 0:
-                        ans -= 0.3
+            if img is None:
+                print("None")
+                end = time.time()
+                if end - start >= Duration * 60:
                     break
+                time.sleep(interval)
+                continue
+            print("git")
+            t = self.model.predict(img)
+            aresult = self.analysis(t)
+            if aresult[0] >= 48:
+                ans += 1
+                print(eye)
+                if len(eye) == 0:
+                    ans -= 0.3
+            print(ans)
             end = time.time()
             if end - start >= Duration * 60:
                 break

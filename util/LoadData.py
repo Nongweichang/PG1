@@ -17,6 +17,7 @@ def resizeImg(img, width=Constant.imageSize, height=Constant.imageSize):
     top, bottom, left, right = (0, 0, 0, 0)  # 储存黑边的宽度,默认为0
 
     h, w, _ = img.shape  # 获取原图的长宽
+
     longer_edge = max(h, w)  # 获取较长一边的值
 
     # 计算黑边的值
